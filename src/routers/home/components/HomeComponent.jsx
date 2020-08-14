@@ -10,7 +10,7 @@ const HomeComponent = ({
 }) => {
     return (
         <div className="home-container">
-            <QuizComponent 
+            <QuizComponent
                 questions={questions}
                 currentQuestionIndex={currentQuestionIndex}
                 setQuestionIndex={setQuestionIndex}

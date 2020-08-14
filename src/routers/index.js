@@ -7,7 +7,6 @@ const Application = () => (
   <Router>
     <React.Fragment>
       <Route exact path="/" component={Home} />
-      {/* <Route path="/contact" component={Contact} /> */}
     </React.Fragment>
   </Router>
 )

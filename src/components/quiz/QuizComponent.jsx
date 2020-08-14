@@ -10,7 +10,7 @@ const QuizComponent = ({
     setUserAnswer,
     fetchData,
 }) => {
-    
+
     const currentQuestion = questions && questions[currentQuestionIndex] && questions[currentQuestionIndex];
 
     return (
@@ -23,26 +23,26 @@ const QuizComponent = ({
                             {
                                 questions.map((q, i) => {
                                     return (
-                                        <li 
+                                        <li
                                             key={q.question} ///TODO: better to have unique id instead of index
                                             onClick={() => setQuestionIndex(i)}
                                             className={
                                                 classNames(
-                                                    {"bg-gray-dark": i === currentQuestionIndex},
-                                                    {"bg-green white": questions[i].user_answer === questions[i].correct_answer},
-                                                    {"bg-red white": questions[i].user_answer && questions[i].user_answer !== questions[i].correct_answer}
+                                                    { "bg-gray-dark": i === currentQuestionIndex },
+                                                    { "bg-green white": questions[i].user_answer === questions[i].correct_answer },
+                                                    { "bg-red white": questions[i].user_answer && questions[i].user_answer !== questions[i].correct_answer }
                                                 )}
                                         >
-                                                {`Question ${i + 1}`}
+                                            {`Question ${i + 1}`}
                                         </li>
                                     )
                                 })
                             }
                         </ul>
                         <div className="content-wrapper">
-                            <div 
-                                className="fs-26 lh-30 fw-700 padding-right-15" 
-                                dangerouslySetInnerHTML={{__html: currentQuestion.question}}   
+                            <div
+                                className="fs-26 lh-30 fw-700 padding-right-15"
+                                dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
                             />
                             <div className="answer-wrapper">
                                 {
@@ -54,8 +54,8 @@ const QuizComponent = ({
                                                 <div>
                                                     <input
                                                         checked={currentQuestion.user_answer === answer}
-                                                        disabled={currentQuestion.user_answer} 
-                                                        onChange={() => setUserAnswer(currentQuestionIndex, answer)} 
+                                                        disabled={currentQuestion.user_answer}
+                                                        onChange={() => setUserAnswer(currentQuestionIndex, answer)}
                                                         type="checkbox" id={`answer${index}`}
                                                     />
                                                     <label for={`answer${index}`}>{answer}</label>
@@ -68,8 +68,8 @@ const QuizComponent = ({
                         </div>
                     </>
                 }
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     className="restart-button border"
                     onClick={fetchData}
                 >

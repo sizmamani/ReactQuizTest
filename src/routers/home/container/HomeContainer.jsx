@@ -21,7 +21,7 @@ const HomeContainer = ({
   return (
     <React.Fragment>
       <div className="home-container">
-        <HomeComponent 
+        <HomeComponent
           questions={questions}
           currentQuestionIndex={currentQuestionIndex}
           setQuestionIndex={setQuestionIndex}

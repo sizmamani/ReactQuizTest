@@ -1,8 +1,8 @@
-import thunk from "redux-thunk"
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import reducers from './reducers'
-import logger from 'redux-logger'
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import reducers from './reducers/reducers';
+import logger from 'redux-logger';
 
 
 export default function configureStore() {

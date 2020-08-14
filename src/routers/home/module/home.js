@@ -28,7 +28,7 @@ export function fetchData() {
                 type: FETCH_DATA,
                 payload: data && data.results || []
             });
-        }, (error)=> {
+        }, (error) => {
             dispatch({
                 type: ERROR,
                 payload: error
@@ -90,14 +90,14 @@ function handleError(state, action) {
 
 function handleLoading(state, action) {
     return {
-        ...state, 
+        ...state,
         isLoading: action.payload
     }
 }
 
 function handleFetchData(state, action) {
     return {
-        ...state, 
+        ...state,
         questions: action.payload,
         isLoading: false,
         currentQuestionIndex: 0
