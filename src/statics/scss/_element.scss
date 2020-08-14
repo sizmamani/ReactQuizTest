@@ -1,0 +1,30 @@
+html,
+body,
+#root {
+    font-family: $font-family-source;
+    font-size: 15px;
+    overflow: hidden;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+p,
+h2,
+h3,
+h4,
+h5 {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+
+

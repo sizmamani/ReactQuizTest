@@ -1,0 +1,26 @@
+@import '../../../statics/scss/variable';
+@import '../../../statics/scss/responsive';
+.container {
+    position: relative;
+    background-image: url(../../../statics/images/bg_dirt.jpg);
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: top left;
+    width: 100%;
+    height: 100%;
+    .content{
+        position: relative;
+        width: 980px;
+        margin: 0 auto;
+        height: 100%;
+        background-color: $color-white;
+        box-shadow: 0px 0px 10px 7px $color-black;
+        overflow-y: auto;
+        top: -110px;
+        transition: all ease 0.3s;
+        &.fixed{
+            transition: all ease 0.3s;
+            top: -60px;
+        }
+    }
+}
