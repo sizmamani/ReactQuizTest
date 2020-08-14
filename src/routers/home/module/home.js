@@ -1,25 +1,32 @@
 import request from "../../../services/request"
 import constants from "./actionConstants";
+import { shuffleArray } from '../../../utils/utils';
 
 const {
     FETCH_DATA,
-    SELECT_SHOP,
     LOADING,
-    ERROR
+    ERROR,
+    SET_QUESTION_INDEX,
+    SET_USER_ANSWER,
 } = constants
 
 
 export function fetchData() {
-    //CAN IMPLEMENT LOADING AND ERROR HANDLING ACTIONS AS WELL LATER
     return (dispatch) => {
         dispatch({
             type: LOADING,
             payload: true
         })
-        request.get('comparison.json', (data) => {
+        request.get('?amount=10', (data) => {
+
+            if (data && data.results) {
+                data.results.forEach(result => {
+                    result.answers = shuffleArray([...result.incorrect_answers, result.correct_answer]);
+                })
+            }
             dispatch({
                 type: FETCH_DATA,
-                payload: data
+                payload: data && data.results || []
             });
         }, (error)=> {
             dispatch({
@@ -30,22 +37,49 @@ export function fetchData() {
     };
 }
 
-export function selectShop(index) {
+export function setQuestionIndex(questionIndex) {
     return (dispatch) => {
         dispatch({
-            type: SELECT_SHOP,
-            index
-        })
+            type: SET_QUESTION_INDEX,
+            payload: questionIndex
+        });
     }
 }
 
-
+export function setUserAnswer(questionIndex, answer) {
+    return (dispatch) => {
+        dispatch({
+            type: SET_USER_ANSWER,
+            payload: {
+                questionIndex,
+                answer
+            }
+        });
+    }
+}
 
 const ACTION_HANDLERS = {
     FETCH_DATA: handleFetchData,
-    SELECT_SHOP: handleSelectShop,
     LOADING: handleLoading,
-    ERROR: handleError
+    ERROR: handleError,
+    SET_QUESTION_INDEX: handleSetQuestionIndex,
+    SET_USER_ANSWER: handleUserAnswer
+}
+
+function handleUserAnswer(state, action) {
+    let newQuestionDataSet = [...state.questions];
+    newQuestionDataSet[action.payload.questionIndex].user_answer = action.payload.answer;
+    return {
+        ...state,
+        questions: newQuestionDataSet,
+        currentQuestionIndex: (state.questions.length - 1 > state.currentQuestionIndex) ? state.currentQuestionIndex + 1 : state.currentQuestionIndex
+    }
+}
+
+function handleSetQuestionIndex(state, action) {
+    return {
+        ...state, currentQuestionIndex: action.payload
+    }
 }
 
 function handleError(state, action) {
@@ -56,28 +90,25 @@ function handleError(state, action) {
 
 function handleLoading(state, action) {
     return {
-        ...state, loading: action.payload
+        ...state, 
+        isLoading: action.payload
     }
 }
 
 function handleFetchData(state, action) {
     return {
         ...state, 
-        shops: action.payload,
-        loading: false
+        questions: action.payload,
+        isLoading: false,
+        currentQuestionIndex: 0
     }
 }
 
-function handleSelectShop(state, action) {
-    return {
-        ...state, selectedShopIndex: action.index
-    }
-}
 
 const initialState = {
-    shops: [],
-    selectedShopIndex: null,
-    loading: false,
+    questions: [],
+    isLoading: false,
+    currentQuestionIndex: 0,
     error: {}
 };
 

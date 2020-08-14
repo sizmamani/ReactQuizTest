@@ -1,8 +1,8 @@
 import axios from 'axios';
-const baseUrl = 'https://burgervergleich.autoteile.check24.de/api';
-//A SIMPLE REQUEST SERVICE WRAPPER ONLY GOOD FOR SUNNY DAYS!
+const baseUrl = 'https://opentdb.com/api.php';
+
+//A SIMPLE REQUEST SERVICE WRAPPER ONLY GOOD FOR SUNNY DAYS ;-)
 class request {
-  
   constructor() {
     let service = axios.create({});
     service.interceptors.request.use(async (config) => {

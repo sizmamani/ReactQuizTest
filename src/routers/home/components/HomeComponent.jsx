@@ -1,14 +1,22 @@
 import React from 'react';
-import FooterComponent from '../../../components/footer/FooterComponent';
+import QuizComponent from '../../../components/quiz/QuizComponent';
 
 const HomeComponent = ({
+    questions,
+    currentQuestionIndex,
+    setQuestionIndex,
+    setUserAnswer,
+    fetchData,
 }) => {
     return (
         <div className="home-container">
-            <div className="title fs-30">
-                Quiz
-            </div>
-            <FooterComponent />
+            <QuizComponent 
+                questions={questions}
+                currentQuestionIndex={currentQuestionIndex}
+                setQuestionIndex={setQuestionIndex}
+                setUserAnswer={setUserAnswer}
+                fetchData={fetchData}
+            />
         </div>
     )
 }
