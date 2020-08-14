@@ -58,7 +58,7 @@ const QuizComponent = ({
                                                         onChange={() => setUserAnswer(currentQuestionIndex, answer)}
                                                         type="checkbox" id={`answer${index}`}
                                                     />
-                                                    <label for={`answer${index}`}>{answer}</label>
+                                                    <label for={`answer${index}`} dangerouslySetInnerHTML={{ __html: answer }}></label>
                                                 </div>
                                             </div>
                                         )
